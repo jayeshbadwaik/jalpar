@@ -1,4 +1,4 @@
-# jalpar : Install and Maintain an Archlinux System
+# jalpar : install and maintain my systems
 
 
 ## Installation
