@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if [ "$#" -ne 1 ]; then
+  echo "Script requires:"
+  echo "1. Name of the Backup Drive"
+  exit 1
+fi
+
+rsync -aAXv --delete /home/jayesh/ /run/media/jayesh/$1/$(hostname)/home/jayesh/
