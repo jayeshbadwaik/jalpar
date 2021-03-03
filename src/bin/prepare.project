@@ -20,5 +20,15 @@ if [ "$#" -ne 2 ]; then
   exit 1
 fi
 
+CONFIG_TYPE=$1
+DESTINATION=$2
 
+case $CONFIG_TYPE in
+  cpp)
+    rsync -av --no-o --no-g $SCRIPT_DIR/../share/project/cpp/ $DESTINATION/
+    ;;
 
+  tex)
+    rsync -av --no-o --no-g $SCRIPT_DIR/../share/project/tex/ $DESTINATION/
+    ;;
+esac
