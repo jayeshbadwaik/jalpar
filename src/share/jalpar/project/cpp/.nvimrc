@@ -52,7 +52,7 @@ endfunction
 function! s:insert_license_cmake()
   set formatoptions-=cro
   execute "normal! i#------------------------------------------------------------------------------"
-  execute "normal! o# SPDX-License-Identifier: \"Unlicense\""
+  execute "normal! o# SPDX-License-Identifier: \"Apache-2.0\""
   execute "normal! o# Copyright (C) 2021-2021, Jayesh Badwaik <j.badwaik@fz-juelich.de>"
   execute "normal! o#------------------------------------------------------------------------------"
   set formatoptions+=cro
@@ -61,7 +61,7 @@ endfunction
 function! s:insert_license_bash()
   set formatoptions-=cro
   execute "normal! i#------------------------------------------------------------------------------"
-  execute "normal! o# SPDX-License-Identifier: \"Unlicense\""
+  execute "normal! o# SPDX-License-Identifier: \"Apache-2.0\""
   execute "normal! o# Copyright (C) 2021-2021, Jayesh Badwaik <j.badwaik@fz-juelich.de>"
   execute "normal! o#------------------------------------------------------------------------------"
   set formatoptions+=cro
