@@ -41,37 +41,41 @@ endfunction
 
 function! s:insert_license_cpp()
   set formatoptions-=cro
-  execute "normal! i//-------------------------------------------------------------------------------"
-  execute "normal! o// SPDX-License-Identifier: \"GPL-2.0-only WITH GCC-exception-2.0\""
+  execute "normal! i// --"
+  execute "normal! o// SPDX-License-Identifier: \"Apache-2.0\""
+  execute "normal! o//"
   execute "normal! o// Copyright (C) 2021-2021, Jayesh Badwaik <j.badwaik@fz-juelich.de>"
-  execute "normal! o//-------------------------------------------------------------------------------"
+  execute "normal! o// --"
   normal! o
   set formatoptions+=cro
 endfunction
 
 function! s:insert_license_cmake()
   set formatoptions-=cro
-  execute "normal! i#------------------------------------------------------------------------------"
+  execute "normal! i# --"
   execute "normal! o# SPDX-License-Identifier: \"Apache-2.0\""
+  execute "normal! o#"
   execute "normal! o# Copyright (C) 2021-2021, Jayesh Badwaik <j.badwaik@fz-juelich.de>"
-  execute "normal! o#------------------------------------------------------------------------------"
+  execute "normal! o# --"
   set formatoptions+=cro
 endfunction
 
 function! s:insert_license_bash()
   set formatoptions-=cro
-  execute "normal! i#------------------------------------------------------------------------------"
+  execute "normal! i# --"
   execute "normal! o# SPDX-License-Identifier: \"Apache-2.0\""
+  execute "normal! o#"
   execute "normal! o# Copyright (C) 2021-2021, Jayesh Badwaik <j.badwaik@fz-juelich.de>"
-  execute "normal! o#------------------------------------------------------------------------------"
+  execute "normal! o# --"
   set formatoptions+=cro
 endfunction
 
 function! s:insert_license_html()
   set formatoptions-=cro
   execute "normal! i<!--"
-  execute "normal! oSPDX-License-Identifier: \"CC-BY-SA-4.0\""
-  execute "normal! oCopyright (C) 2021-2021, Jayesh Badwaik <j.badwaik@fz-juelich.de>"
+  execute "normal! o- SPDX-License-Identifier: \"CC-BY-SA-4.0\""
+  execute "normal! o-"
+  execute "normal! o- Copyright (C) 2021-2021, Jayesh Badwaik <j.badwaik@fz-juelich.de>"
   execute "normal! o-->"
   set formatoptions+=cro
 endfunction
