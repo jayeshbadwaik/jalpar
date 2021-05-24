@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+configure_display(){
+  xrandr \
+    --output eDP --pos 0x0 --mode 1920x1080 --primary \
+    --output DisplayPort-1 --off \
+    --output DisplayPort-2 --off
+}
