@@ -4,6 +4,7 @@
 
 .gitstats
 
+.cache
 .idea
 .vimrc
 .nvimrc
