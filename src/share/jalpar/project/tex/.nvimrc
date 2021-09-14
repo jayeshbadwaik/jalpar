@@ -50,7 +50,6 @@ let g:vimtex_compiler_latexmk = {
 
 let g:vimtex_view_automatic=0
 let g:vimtex_index_split_width=100
-let g:vimtex_index_hide_line_numbers=1
 
 
 " Remove Trailing Whitespace on Save
