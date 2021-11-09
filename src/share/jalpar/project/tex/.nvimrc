@@ -49,7 +49,6 @@ let g:vimtex_compiler_latexmk = {
     \}
 
 let g:vimtex_view_automatic=0
-let g:vimtex_index_split_width=100
 
 
 " Remove Trailing Whitespace on Save
@@ -73,9 +72,6 @@ function VimtexErrorDisplay(status)
   let l += 1
   endwhile
 endfunction
-
-let g:vimtex_compiler_callback_hooks=['VimtexErrorDisplay']
-
 
 augroup filetypedetect
     au BufRead,BufNewFile *.tikz set filetype=tex

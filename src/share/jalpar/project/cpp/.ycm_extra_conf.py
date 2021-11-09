@@ -30,6 +30,7 @@ cxxflags = [
     'c++',
     '-stdlib=libc++',
     '-Isrc/include/',
+    '-I../build/src/gencode/vanmake/include/',
     '-Itest/include/'
 ]
 
