@@ -1,0 +1,65 @@
+#!/bin/bash
+
+set -eou pipefail
+
+SOURCE="${BASH_SOURCE[0]}"
+# resolve $SOURCE until the file is no longer a symlink
+while [ -h "$SOURCE" ]; do
+  DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  # if $SOURCE was a relative symlink, we need to resolve it relative to the
+  # path where the symlink file was located
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+SCRIPT_DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+
+for Activity in $(qdbus org.kde.ActivityManager /ActivityManager/Activities ListActivities); do
+  ActivityName=$(qdbus org.kde.ActivityManager /ActivityManager/Activities ActivityName $Activity)
+  if [[ $ActivityName == "ZL" ]]; then
+    ActivityUUID=$Activity
+  fi
+done
+
+qdbus org.kde.ActivityManager /ActivityManager/Activities SetCurrentActivity $ActivityUUID
+
+BASE_PATH=/home/work/dgale/dgale
+
+START_DESKTOP=16
+
+for BRANCH in main dg dmsh vtk; do
+qdbus org.kde.KWin /KWin setCurrentDesktop $START_DESKTOP
+sleep 3s
+kstart5 --windowclass konsole --maximize -- konsole --workdir $BASE_PATH/$BRANCH/code
+pushd $BASE_PATH/$BRANCH/code
+kstart5 --windowclass konsole --maximize -- nvim-qt CMakeLists.txt
+popd
+sleep 3s
+START_DESKTOP=$((START_DESKTOP-1))
+qdbus org.kde.KWin /KWin setCurrentDesktop $START_DESKTOP
+sleep 3s
+kstart5 --windowclass konsole --maximize -- konsole --workdir $BASE_PATH/$BRANCH/build
+START_DESKTOP=$((START_DESKTOP-1))
+sleep 3s
+done
+
+
+ROOT_PATH=/home/work/dgale/
+
+qdbus org.kde.KWin /KWin setCurrentDesktop 2
+sleep 3s
+kstart5 --windowclass konsole --maximize -- konsole --workdir $ROOT_PATH/thesis
+pushd $ROOT_PATH/thesis
+kstart5 --windowclass konsole --maximize -- nvim-qt thesis.tex
+popd
+sleep 3s
+
+qdbus org.kde.KWin /KWin setCurrentDesktop 1
+sleep 3s
+kstart5 --windowclass konsole --maximize -- konsole --workdir $ROOT_PATH/website/source
+pushd $ROOT_PATH/website/source
+kstart5 --windowclass konsole --maximize -- nvim-qt config.toml
+popd
+sleep 3s
+
+
+
