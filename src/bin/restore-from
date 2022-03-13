@@ -5,7 +5,8 @@ set -euo pipefail
 if [ "$#" -ne 1 ]; then
   echo "Script requires:"
   echo "1. Name of the Backup Drive"
+  echo "2. User"
   exit 1
 fi
 
-rsync -aAXv --delete /run/media/jayesh/$1/$(hostname)/home/jayesh/ /home/jayesh/
+rsync -aAXv --delete /run/media/$USER/$1/$(hostname)/home/$USER/ /home/$USER/
