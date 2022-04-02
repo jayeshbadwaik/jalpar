@@ -1,4 +1,8 @@
 #!/bin/bash
+#-------------------------------------------------------------------------------
+# SPDX-License-Identifier: "Apache-2.0"
+# Copyright (C) 2020, Jayesh Badwaik <j.badwaik@fz-juelich.de>
+#-------------------------------------------------------------------------------
 set -euo pipefail
 
 SOURCE="${BASH_SOURCE[0]}"
@@ -12,14 +16,36 @@ while [ -h "$SOURCE" ]; do
 done
 SCRIPT_DIRECTORY="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
-if [ "$#" -ne 1 ]; then
-  echo "Script requires:"
-  echo "1. Install Prefix"
+print_help() {
+  printf "%6s\n" "usage:"
+  printf "    %-30s %-20s\n"  "install --help" "Display this help"
+  printf "    %-30s %-20s\n"  "install [-p|--prefix <path>]" "Install sutar to <path>"
+}
+
+if [[ $# -eq 0 ]]; then
+  print_help
   exit 1
 fi
 
-INSTALL_PREFIX=$1
+PREFIX_KEY=$1
 
-SOURCE_DIRECTORY=$SCRIPT_DIRECTORY/../src
 
-rsync -av --no-o --no-g $SOURCE_DIRECTORY/ $INSTALL_PREFIX/
+case $PREFIX_KEY in
+  -h|--help)
+    print_help
+    exit 0
+    ;;
+  -p|--prefix)
+    SOURCE_DIRECTORY=$SCRIPT_DIRECTORY/../src
+    INSTALL_PREFIX=$2
+    rsync -av --no-o --no-g $SOURCE_DIRECTORY/ $INSTALL_PREFIX/
+    exit 0
+    ;;
+  *)
+    print_help
+    exit 1
+esac
+
+
+
+
