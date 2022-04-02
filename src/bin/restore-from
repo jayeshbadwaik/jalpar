@@ -9,4 +9,4 @@ if [ "$#" -ne 1 ]; then
   exit 1
 fi
 
-rsync -aAXv --delete /run/media/$USER/$1/$(hostname)/home/$USER/ /home/$USER/
+rsync -aAXv --delete /run/media/$BACKUP_USER/$NAME/$(hostname)/home/$BACKUP_USER/ /home/$BACKUP_USER/

@@ -2,10 +2,11 @@
 
 set -euo pipefail
 
-if [ "$#" -ne 2 ]; then
+if [ "$#" -ne 3 ]; then
   echo "Script requires:"
   echo "1. Name of the Backup Drive"
   echo "2. User"
+  echo "3. Directory"
   exit 1
 fi
 
